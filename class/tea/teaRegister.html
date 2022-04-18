@@ -72,7 +72,7 @@
           </div>
 
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="account" id="floatingInput" placeholder="Account">
+            <input type="text" class="form-control" name="teaAccount" id="floatingInput" placeholder="Account">
             <label for="floatingPassword">帳號:</label>
           </div>
 
@@ -80,6 +80,12 @@
             <input type="password" class="form-control" name="password" id="floatingPassword"
               placeholder="Password">
             <label for="floatingPassword">密碼:</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" name="dpassword" id="floatingPassword"
+              placeholder="Password">
+            <label for="floatingPassword">再次輸入密碼:</label>
           </div>
 
           <div class="form-floating mb-3">
@@ -113,6 +119,51 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
     integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
     crossorigin="anonymous"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+    <script src="http://www.code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+          var content = $('#content').val();
+            if(jQuery.trim(content) == '')
+             alert('空');
+
+      $("#teaRegister").click(function(){
+        let teaName=$("#teaName").val(), teaAccount=$("#teaAccount").val(),password=$("#password").val(),dpassword=$("#dpassword").val(),gender=$("#gender").val(),major=$("#major").val(),grade=$("#grade").val();
+        // console.log(account, password)
+        let formData=new FormData();
+        formData.append('teaName', teaName);
+        formData.append('teaAccount', teaAccount);
+        formData.append('password', password);
+        formData.append('dpassword', dpassword);
+        formData.append('gender', gender); 
+        formData.append('major', major);
+        formData.append('grade', grade);
+        axios({
+          method: "post",
+          url: "/20220329project/dbconnect.php",
+          data: formData,
+          headers: { 'Content-Type': "multipart/form-data"}
+        }).
+        then(function(response){
+          // console.log(response)
+          let data=response.data;
+          console.log("success")
+          // console.log(data)
+          if(data.status===1){ //成功
+            location.href="stuShowChoosed.php";
+          }else{ //失敗
+            let message=`${data.error.message}, 共錯誤 ${data.error.times} 次`
+            if(data.error.times>=5){
+              location.href="";
+            }
+            $("#error").text(message)
+          }
+        })
+        .catch(function(response){
+          console.log(response)
+        })
+      })
+      
+    </script>
 </body>
 
 </html>

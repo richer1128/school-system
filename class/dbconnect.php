@@ -22,48 +22,151 @@ function conn(){
 }
 
 
+
 //老師註冊
-function teaRegister(){
-  require_once("db_connect.php")
-  $name=$_POST["name"];
-  $account=$_POST["account"];
-  $password=md5($_POST["password"]);
-  $gender=$_POST["gender"];
-  $major=$_POST["major"];
- $sql="INSERT INTO 	teacher ( name,  account, password, gender,	major)
- VALUES ( '$name', '$account', '$password', '$gender',	'$major')";
-if ($conn->query($sql) === TRUE) {
-echo "註冊成功<br>";
-$last_id = $conn->insert_id;
-echo "id 為 $last_id";
-} else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
-}
-$conn->close();
-header("location: dashboard.php");
-}
-
-
-//學生註冊
 function stuRegister(){
   require_once("db_connect.php")
-  $name=$_POST["name"];
-  $account=$_POST["account"];
+  $teaName=$_POST["teaName"];
+  $teaAccount=$_POST["teaAccount"];
   $password=md5($_POST["password"]);
+  $dpassword=md5($_POST["dpassword"]);
   $gender=$_POST["gender"];
   $major=$_POST["major"];
   $grade=$_POST["grade"];
- $sql="INSERT INTO 	student ( name, account, password, gender,	major, grade)
- VALUES ( '$name', '$password', '$account', '$gender', '$major','$grade')";
-if ($conn->query($sql) === TRUE) {
-echo "註冊成功<br>";
-$last_id = $conn->insert_id;
-echo "id 為 $last_id";
-} else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
+//過濾空格
+$teaName = trim($teaName);
+$teaAccount = trim($teaAccount);
+$password = trim($password);
+$dpassword = trim($dpassword);
+//帳號判斷
+
+if($teaAccount == "" && $password == "" && $dpassword == ""){
+  echo "[{\"result\":\"您的帳號或密碼有誤\"}]";
+}else if($teaAccount == "" && $password == ""){
+  echo "[{\"result\":\"您的帳號或密碼有誤\"}]";
+}else if ($password == "" && $dpassword == "") {
+  echo "[{\"result\":\"您的密碼有誤\"}]";
+}else if($teaAccount == "" && $dpassword == ""){
+  echo "[{\"result\":\"您的帳號或密碼有誤\"}]";
+}else if ($teaAccount == "") {
+  echo "[{\"result\":\"帳號未輸入\"}]";
+}else if ($password == "") {
+  echo "[{\"result\":\"密碼未輸入\"}]";
+}else if ($dpassword == "") {
+  echo "[{\"result\":\"密碼不一致\"}]";
+}else if ($password !== $dpassword) {
+  echo "[{\"result\":\"密碼不一致\"}]";
+}else if (strlen($teaAccount) < 5){
+  echo "[{\"result\":\"帳號不能小於五位數字\"}]";
+}else if (strlen($password) < 8){
+  echo "[{\"result\":\"密碼不能小於八位數字\"}]";
+}else if (preg_match('/^[\x{4e00}-\x{9fa5}]+$/u', $teaAccount)>0){
+  echo "[{\"result\":\"帳號不能為中文\"}]";
+}else if (preg_match('/[\x{4e00}-\x{9fa5}]/u', $teaAccount)>0){
+  echo "[{\"result\":\"帳號不能存在中文\"}]";
+}else if(preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/",$teaAccount)){
+  echo "[{\"result\":\"帳號不能使用特殊符號\"}]";
+}else{
+
+    //查看DB是否已有存在帳號
+    $exist = mysql_query("SELECT * FROM teacher WHERE teaAccount = '$teaAccount'");
+    $exist_result = mysql_num_rows($exist);
+    if($exist_result){
+        //如果有
+        echo "[{\"result\":\"該帳號已被註冊\"}]";
+    }else{
+        //如果沒有建至DB
+
+        if ($conn->query($sql) === TRUE) {
+          echo "註冊成功<br>";
+          $last_id = $conn->insert_id;
+          echo "id 為 $last_id";
+          } else {
+            //如果沒有建至DB
+    
+            if ($conn->query($sql) === TRUE) {
+              echo "註冊成功<br>";
+              $sql="INSERT INTO teacher ( teaName, teaAccount, password, dpassword, gender,	major, grade)
+              VALUES ( '$teaName', '$teaAccount', '$password','$dpassword', '$gender', '$major','$grade')";
+              $last_id = $conn->insert_id;
+              echo "id 為 $last_id";
+              $conn->close();
+              header("location: tealogin.php");
+              } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+                header("location: stuRegister.php");
+              }
+      }
 }
-$conn->close();
-header("location: dashboard.php");
+//學生註冊
+function stuRegister()
+{
+          require_once("db_connect.php")
+          $stuName=$_POST["stuName"];
+          $stuaAccount=$_POST["stuaAccount"];
+          $password=md5($_POST["password"]);
+          $dpassword=md5($_POST["dpassword"]);
+          $gender=$_POST["gender"];
+          $major=$_POST["major"];
+          $grade=$_POST["grade"];
+//過濾空格
+          $stuName = trim($stuName);
+          $stuaAccount = trim($stuaAccount);
+          $password = trim($password);
+          $dpassword = trim($dpassword);
+//帳號判斷
+
+    if($stuaAccount == "" && $password == "" && $dpassword == ""){
+      echo "[{\"result\":\"您的帳號或密碼有誤\"}]";
+    }else if($stuaAccount == "" && $password == ""){
+      echo "[{\"result\":\"您的帳號或密碼有誤\"}]";
+    }else if ($password == "" && $dpassword == "") {
+      echo "[{\"result\":\"您的密碼有誤\"}]";
+    }else if($stuaAccount == "" && $dpassword == ""){
+      echo "[{\"result\":\"您的帳號或密碼有誤\"}]";
+    }else if ($stuaAccount == "") {
+      echo "[{\"result\":\"帳號未輸入\"}]";
+    }else if ($password == "") {
+      echo "[{\"result\":\"密碼未輸入\"}]";
+    }else if ($dpassword == "") {
+      echo "[{\"result\":\"密碼不一致\"}]";
+    }else if ($password !== $dpassword) {
+      echo "[{\"result\":\"密碼不一致\"}]";
+    }else if (strlen($stuaAccount) < 5){
+      echo "[{\"result\":\"帳號不能小於五位數字\"}]";
+    }else if (strlen($password) < 8){
+      echo "[{\"result\":\"密碼不能小於八位數字\"}]";
+    }else if (preg_match('/^[\x{4e00}-\x{9fa5}]+$/u', $stuaAccount)>0){
+      echo "[{\"result\":\"帳號不能為中文\"}]";
+    }else if (preg_match('/[\x{4e00}-\x{9fa5}]/u', $stuaAccount)>0){
+      echo "[{\"result\":\"帳號不能存在中文\"}]";
+    }else if(preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/",$stuaAccount)){
+      echo "[{\"result\":\"帳號不能使用特殊符號\"}]";
+    }else{
+
+//查看DB是否已有存在帳號
+    $exist = mysql_query("SELECT * FROM student WHERE stuaAccount = '$stuaAccount'");
+    $exist_result = mysql_num_rows($exist);
+    if($exist_result){
+//如果有
+        echo "[{\"result\":\"該帳號已被註冊\"}]";
+
+    }else{
+//如果沒有建至DB
+
+    if ($conn->query($sql) === TRUE) {
+      echo "註冊成功<br>";
+      $sql="INSERT INTO 	student ( stuName, stuaAccount, password, dpassword, gender,	major, grade)
+      VALUES ( '$name', '$password', '$account', '$gender', '$major','$grade')";
+      $last_id = $conn->insert_id;
+      echo "id 為 $last_id";
+      $conn->close();
+      header("location: stuLogin.php");
+      } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+        header("location: stuRegister.php");
+      }
+    }
 }
 
 

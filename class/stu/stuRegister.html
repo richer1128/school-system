@@ -75,13 +75,17 @@
           </div>
 
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="stuaccount" id="floatingInput" placeholder="Account">
+            <input type="text" class="form-control" name="stuAccount" id="floatingInput" placeholder="Account">
             <label for="floatingPassword">帳號:</label>
           </div>
 
           <div class="form-floating mb-3">
             <input type="password" class="form-control" name="Password" id="floatingPassword" placeholder="Password">
             <label for="floatingPassword">密碼:</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" name="dPassword" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">再次輸入密碼:</label>
           </div>
 
           <div class="form-floating mb-3">
@@ -132,12 +136,13 @@
              alert('空');
 
       $("#stuRegister").click(function(){
-        let stuName=$("#stuName").val(), stuaAccount=$("#stuAccount").val(),password=$("#password").val(),gender=$("#gender").val(),major=$("#major").val(),grade=$("#grade").val();
+        let stuName=$("#stuName").val(), stuAccount=$("#stuAccount").val(),password=$("#password").val(),dpassword=$("#dpassword").val(),gender=$("#gender").val(),major=$("#major").val(),grade=$("#grade").val();
         // console.log(account, password)
         let formData=new FormData();
-        formData.append('stuName', account);
-        formData.append('stuaAccount', stuaAccount);
+        formData.append('stuName', stuName);
+        formData.append('stuAccount', stuAccount);
         formData.append('password', password);
+        formData.append('dpassword', dpassword);
         formData.append('gender', gender); 
         formData.append('major', major);
         formData.append('grade', grade);
