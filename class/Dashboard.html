@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>stuLogin</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.0.2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="../style.css"> -->
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="#"><b>學生管理課程系統</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <!-- dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            功能選單
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">所有課程</a></li>
+                            <!-- 課程列表API -->
+                            <li><a class="dropdown-item" href="#">查詢課程</a></li>
+                            <!-- 查詢課程講師列表、講師所開課程列表API -->
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="stuLogin/php">瀏覽所選課程</a></li>
+                            <!-- 學生所選課表 -->
+                        </ul>
+                    </li>
+                    <a class="nav-link" href="#">教師專區</a>
+                      <!-- 老師註冊登入、課程新增、修改、刪除、查詢學生指定課程、新增講師API-->
+                    <a class="nav-link" href="#">學生專區</a>
+                    <!-- 學生註冊登入、選課新增、修改、刪除API -->
+                    <a class="nav-link" href="logout.php">登出</a>
+                    <!-- 課表R建立:課程ID、課程名稱、課程簡介、課程時數、師資、上課地點、上課時間、學分數 -->
+                    <!-- 講師列表:講師ID、講師、講師簡介 -->
+                    <!-- 講師所開課程列表:講師ID、課程ID、連結課程link、 -->
+                    <!-- 學生所選課表->link至登入，完成後(header)所選課程、講師ID、課程R全部資訊、課程刪除、 -->
+                                        <!-- 講師 -->
+                                <!-- 講師註冊:講師名稱、帳號、密碼、 -->
+                                    <!-- 講師登入:帳號、密碼、 -->
+                                        <!-- 學生 -->
+                                <!-- 學生註冊:學生名稱、帳號、密碼、 -->
+                                     <!-- 學生登入:帳號、密碼、 -->
+                    
+
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+    <div class="row">
+        <main class="col-lg-9">
+            <figure class="figure">
+                <img src="../images/fg.jpg" class="img-fluid" alt="">
+                <figcaption class="figure-caption">
+                    這是母校
+                </figcaption>
+            </figure>
+            <article>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover ">
+                        <tr>
+                            <th>創辦日期:</th>
+                            <td>1961年設立逢甲工商學院
+                                1980年升格為逢甲大學</td>
+                        </tr>
+                        <tr>
+                            <th>董事長:</th>
+                            <td>高承恕</td>
+                        </tr>
+                        <tr>
+                            <th>校長:</th>
+                            <td>李秉乾</td>
+                        </tr>
+                        <tr>
+                            <th>教師人數:</th>
+                            <td>633</td>
+                        </tr>
+                        <tr>
+                            <th>學生人數:</th>
+                            <td>21059</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h1 class="display-1">逢甲大學</h1>
+                <P>設有工程與科學、商、人文社會、資訊電機、建設、經營管理、金融、國際科技與管理、建築專業、創能學院等10個學院，共有40學系，40個碩士班，10個碩士在職專班，15個博士班及46個研究中心
+                    。創校四大系分別為會計、工商管理、土木工程與水利工程系。</P>
+            </article>
+            <h2 class="mt-4">相關新聞</h2>
+            <div class="row gx-3 gy-3 new-list">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="ratio ratio-16x9">
+                            <img src="../images/w1.jpg" alt="">
+                        </div>
+                        <div class="card-body">
+                            <h3 title="與軍公教同步 逢甲大學宣布111年起調薪4%" class="card-title h5 text-truncate">與軍公教同步
+                                逢甲大學宣布111年起調薪4%</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card">
+                            <div class="ratio ratio-16x9">
+                                <img src="../images/w2.jpg" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h3 title="台中「五間大學」學生房租出爐!逢甲最貴一個月要6千元" class="card-title h5 text-truncate">
+                                    台中「五間大學」學生房租出爐!逢甲最貴一個月要6千元
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card">
+                            <div class="ratio ratio-16x9">
+                                <img src="../images/w3.jpeg" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h3 title="逢甲大學生車禍遭３男圍毆!命危" class="card-title h5 text-truncate">逢甲大學生車禍遭３男圍毆!命危
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <aside class="col-lg-3 mt-4 mt-lg-0">
+            <h3>更多資訊</h3>
+            <div>
+                <div class="list-group">
+                    <!-- active去掉 -->
+                    <a href="#" class="list-group-item list-group-item-action " aria-current="true">
+                        其他連結
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">男廁所</a>
+                    <a href="#" class="list-group-item list-group-item-action">女廁所</a>
+                </div>
+
+
+
+            </div>
+        </aside>
+    </div>
+
+    <footer class="bg-warning text-light mt-5">
+        <div class="container">
+            <div class="b-4">
+                footer
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

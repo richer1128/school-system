@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>stuRegister</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.0.2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+
+      <a class="navbar-brand" href="#"><b>逢甲大學</b></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <!-- dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              功能選單
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">所有課程</a></li>
+              <li><a class="dropdown-item" href="#">查詢課程</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">瀏覽所選課程</a></li>
+            </ul>
+          </li>
+          <a class="nav-link" href="#">教師登入</a>
+          <a class="nav-link" href="#">學生登入</a>
+          <a class="nav-link" href="#">登出</a>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="container ">
+<!-- fcu-img -->
+    <div class="row">
+      <figure class="figure">
+        <img src="../images/fg.jpg" class="img-fluid" alt="">
+        <figcaption class="figure-caption">
+          welcome to fcu
+        </figcaption>
+      </figure>
+    </div>
+    <div class="d-flex justify-content-center align-items-center m-0 p-0  ">
+
+      <div class="registerBox justify-content-center align-items-center m-0 p-0  ">
+
+        <form action="doCreate.php" method="post"
+          class="form-group h-100 d-flex flex-column justify-content-between  p-3">
+
+          <h1> <b> 學生註冊 </b> </h1>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="stuName" id="floatingInput" placeholder="name">
+            <label for="floatingPassword">學生姓名:</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="stuaccount" id="floatingInput" placeholder="Account">
+            <label for="floatingPassword">帳號:</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" name="Password" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">密碼:</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <select name="gender" id="" class="form-select">
+              <!-- <option value="">性別</option> -->
+              <option value="male">男生</option>
+              <option value="female">女生</option>
+            </select>
+            <label for="">性別</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <select name="major" id="" class="form-select">
+              <!-- <option value="">學系</option> -->
+              <option value="Business">商科</option>
+              <option value="science">理科</option>
+            </select>
+            <label for="floatingPassword">學系</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <select name="grade" id="" class="form-select">
+              <!-- <option value="">年級</option> -->
+              <option value="junior">1</option>
+              <option value="senior">2</option>
+            </select>
+            <label for="floatingPassword">年級</label>
+          </div>
+
+          <button id= "stuRegister" class="button-1" type="submit">註冊</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+    <script src="http://www.code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+          var content = $('#content').val();
+            if(jQuery.trim(content) == '')
+             alert('空');
+
+      $("#stuRegister").click(function(){
+        let stuName=$("#stuName").val(), stuaAccount=$("#stuAccount").val(),password=$("#password").val(),gender=$("#gender").val(),major=$("#major").val(),grade=$("#grade").val();
+        // console.log(account, password)
+        let formData=new FormData();
+        formData.append('stuName', account);
+        formData.append('stuaAccount', stuaAccount);
+        formData.append('password', password);
+        formData.append('gender', gender); 
+        formData.append('major', major);
+        formData.append('grade', grade);
+        axios({
+          method: "post",
+          url: "/20220329project/dbconnect.php",
+          data: formData,
+          headers: { 'Content-Type': "multipart/form-data"}
+        }).
+        then(function(response){
+          // console.log(response)
+          let data=response.data;
+          console.log("success")
+          // console.log(data)
+          if(data.status===1){ //成功
+            location.href="stuShowChoosed.php";
+          }else{ //失敗
+            let message=`${data.error.message}, 共錯誤 ${data.error.times} 次`
+            if(data.error.times>=5){
+              location.href="";
+            }
+            $("#error").text(message)
+          }
+        })
+        .catch(function(response){
+          console.log(response)
+        })
+      })
+      
+    </script>
+</body>
+
+</html>
